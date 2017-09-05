@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "readit",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/yszk0123/readit.git",
+  "author": "Yuji Suzuki <y0suzuki0123@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node fuse.js"
+  },
+  "devDependencies": {
+    "fuse-box": "^2.2.31",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0"
+  }
+}
