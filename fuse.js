@@ -7,6 +7,7 @@ const fuse = FuseBox.init({
   alias: {
     react: 'preact-compat',
     'react-dom': 'preact-compat',
+    'redux-saga/effects': 'redux-saga/lib/effects',
   },
   plugins: [
     WebIndexPlugin({
