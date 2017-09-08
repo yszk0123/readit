@@ -1,8 +1,23 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
+enum ActionTypes {
+  ChangeName = 'ChangeName',
+}
+
+interface ChangeNameAction {
+  type: ActionTypes.ChangeName;
+  payload: { name: string };
+}
+
+type Action = ChangeNameAction;
+
+function changeName(name: string): ChangeNameAction {
+  return { type: ActionTypes.ChangeName, payload: { name } };
+}
+
 function* helloSaga(action: any) {
   try {
-    yield put({ type: 'CHANGE_NAME', payload: { name: 'taro' } });
+    yield put(changeName('taro'));
   } catch (error) {
     yield put({ type: 'FAIL' });
   }
