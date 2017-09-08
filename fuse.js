@@ -1,8 +1,8 @@
 const { FuseBox, WebIndexPlugin } = require('fuse-box');
 
 const fuse = FuseBox.init({
-  homeDir: 'src/',
-  output: 'dist/$name',
+  homeDir: 'src/client/',
+  output: 'dist/public/$name',
   tsConfig: 'tsconfig.json',
   alias: {
     react: 'preact-compat',
@@ -11,7 +11,7 @@ const fuse = FuseBox.init({
   },
   plugins: [
     WebIndexPlugin({
-      template: 'src/index.html',
+      template: 'src/client/index.html',
       title: 'Readit',
       target: 'index.html',
     }),
