@@ -1,31 +1,20 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { call, take, put, takeEvery } from 'redux-saga/effects';
+import { Action, ActionTypes } from '../interfaces';
+import { fetch } from '../apis';
+import { FetchBookAction } from '../actions';
 
-enum ActionTypes {
-  ChangeName = 'ChangeName',
-}
-
-interface ChangeNameAction {
-  type: ActionTypes.ChangeName;
-  payload: { name: string };
-}
-
-type Action = ChangeNameAction;
-
-function changeName(name: string): ChangeNameAction {
-  return { type: ActionTypes.ChangeName, payload: { name } };
-}
-
-function* helloSaga(action: any) {
+function* fetchBook({ payload: { bookId } }: FetchBookAction) {
   try {
-    yield put(changeName('taro'));
+    const book = yield call(fetch, `/api/books/${bookId}`);
+    yield put({ type: ActionTypes.FETCH_BOOK_SUCCESS, payload: book });
   } catch (error) {
-    yield put({ type: 'FAIL' });
+    yield put({ type: ActionTypes.FETCH_BOOK_FAILURE, payload: error });
   }
 }
 
-export default function* rootSaga() {
+export default function* root() {
   try {
-    yield takeEvery('HELLO', helloSaga);
+    yield takeEvery(ActionTypes.FETCH_BOOK, fetchBook);
   } catch (error) {
     console.log('Error in saga!:', error);
   }

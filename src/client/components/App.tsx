@@ -1,15 +1,32 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, MapDispatchToPropsParam } from 'react-redux';
+import { ActionTypes, State, User, Book } from '../interfaces';
+import { fetchBook } from '../actions';
+import { getBook, getUser } from '../selectors';
 
 interface Props {
-  name: string;
+  user: User | null;
+  book: Book | null;
+  onClick: React.ReactEventHandler<HTMLElement>;
 }
 
-export function App({ name, onClick }: Props) {
-  return <div onClick={onClick}>Hello, {name}!</div>;
+export function App({ book, user, onClick }: Props) {
+  return (
+    <div onClick={onClick}>
+      {user && <span>Hello, {user.nickname}!</span>}
+      {book && <h1>{book.title}</h1>}
+    </div>
+  );
 }
 
 export default connect(
-  ({ name }) => ({ name }),
-  dispatch => ({ onClick: () => dispatch({ type: 'HELLO' }) }),
+  (state: State) => ({
+    user: getUser(state),
+    book: getBook(state, '123'),
+  }),
+  dispatch => ({
+    onClick: () => {
+      dispatch(fetchBook('123'));
+    },
+  }),
 )(App);

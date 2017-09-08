@@ -4,6 +4,7 @@ const fuse = FuseBox.init({
   homeDir: 'src/client/',
   output: 'dist/public/$name',
   tsConfig: 'tsconfig.json',
+  target: 'browser',
   alias: {
     react: 'preact-compat',
     'react-dom': 'preact-compat',
@@ -20,6 +21,15 @@ const fuse = FuseBox.init({
 
 fuse.dev({
   port: 3000,
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3001',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '/',
+      },
+    },
+  },
 });
 
 fuse
