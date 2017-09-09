@@ -6,6 +6,30 @@
       "email": "foobar@gmail.com"
     }
   ],
+  "readingLogs": [
+    {
+      "id": "1",
+      "reviewId": "1",
+      "bookId": "123"
+    },
+    {
+      "id": "2",
+      "reviewId": "2",
+      "bookId": "234"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "status": "READ",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "status": "PLAN_TO_BUY",
+      "rating": 0
+    }
+  ],
   "books": [
     {
       "id": "123",
@@ -18,6 +42,26 @@
       "pageCount": 100,
       "publisher": "John Smith",
       "publishedAt": "2000-01-02",
+      "isbn": null,
+      "meta": {
+        "source": {
+          "type": "https://www.googleapis.com/books/v1/volumes",
+          "link": "http://example.com/books?q=Something",
+          "searchText": "Something"
+        }
+      }
+    },
+    {
+      "id": "234",
+      "title": "Something",
+      "subtitle": "Volume 2",
+      "author": "John Smith",
+      "thumbnailLink": "http://via.placeholder.com/128x128",
+      "description": "example",
+      "category": "a, b, c",
+      "pageCount": 150,
+      "publisher": "John Smith",
+      "publishedAt": "2000-08-14",
       "isbn": null,
       "meta": {
         "source": {

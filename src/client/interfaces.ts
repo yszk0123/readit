@@ -1,12 +1,13 @@
+import { readingLog } from './schema/index';
 import { Action as ReduxAction } from 'redux';
 
-export interface Action extends ReduxAction {
-  payload: any;
-}
+// Type
+
+export type ID = string;
 
 export type DateOnly = string;
 
-export enum ReadingStatus {
+export enum ReviewStatus {
   PLAN_TO_BUY = 'PLAN_TO_BUY',
   UNREAD = 'UNREAD',
   READING = 'READING',
@@ -14,20 +15,18 @@ export enum ReadingStatus {
   STOP = 'STOP',
 }
 
-export interface ReadingLog {
-  id: string;
-  bookId: string;
-  status: ReadingStatus;
-}
+export type ReviewRating = 0 | 1 | 2 | 3 | 4 | 5;
+
+// Entity
 
 export interface User {
-  id: string;
+  id: ID;
   nickname: string;
   email: string | null;
 }
 
 export interface Book {
-  id: string;
+  id: ID;
   title: string;
   subtitle: string;
   author: string;
@@ -48,18 +47,44 @@ export interface Book {
   };
 }
 
+export interface Review {
+  id: ID;
+  status: ReviewStatus;
+  rating: ReviewRating;
+}
+
+export interface ReadingLog {
+  id: ID;
+  book: Book;
+  review: Review;
+}
+
+// Action
+
+export interface Action extends ReduxAction {
+  payload: any;
+}
+
 export enum ActionTypes {
   HELLO = 'HELLO',
   CHANGE_NAME = 'CHANGE_NAME',
-  FETCH_BOOK = 'FETCH_BOOK',
-  FETCH_BOOK_SUCCESS = 'FETCH_BOOK_SUCCESS',
-  FETCH_BOOK_FAILURE = 'FETCH_BOOK_FAILURE',
+  FETCH_SUCCESS = 'FETCH_SUCCESS',
+  FETCH_FAILURE = 'FETCH_FAILURE',
+  FETCH_READING_LOGS = 'FETCH_READING_LOGS',
+  UPDATE_REVIEW = 'UPDATE_REVIEW',
 }
+
+// State
 
 export interface State {
   entities: {
-    user: User;
-    books: Record<string, Book>;
-    readingLogs: Record<string, ReadingLog>;
+    users: Record<ID, User>;
+    books: Record<ID, Book>;
+    reviews: Record<ID, Review>;
+    readingLogs: Record<ID, ReadingLog>;
+  };
+  ui: {
+    currentUser: ID | null;
+    readingLogs: ID[];
   };
 }
