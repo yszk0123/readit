@@ -28,7 +28,7 @@ export interface User {
 export interface Book {
   id: ID;
   title: string;
-  subtitle: string;
+  subtitle: string | null;
   author: string;
   thumbnailLink: string;
   description: string;
@@ -71,7 +71,9 @@ export enum ActionTypes {
   FETCH_SUCCESS = 'FETCH_SUCCESS',
   FETCH_FAILURE = 'FETCH_FAILURE',
   FETCH_READING_LOGS = 'FETCH_READING_LOGS',
+  CREATE_READING_LOG = 'CREATE_READING_LOG',
   UPDATE_REVIEW = 'UPDATE_REVIEW',
+  SEARCH_BOOK_BY_TITLE = 'SEARCH_BOOK_BY_TITLE',
 }
 
 // State
@@ -86,5 +88,6 @@ export interface State {
   ui: {
     currentUser: ID | null;
     readingLogs: ID[];
+    titleInput: string;
   };
 }

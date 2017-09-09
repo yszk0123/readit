@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { connect, MapDispatchToPropsParam } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ID, ActionTypes, State, User, ReadingLog } from '../interfaces';
 import { fetchReadingLogs } from '../actions';
 import { selectCurrentUser, selectReadingLog } from '../selectors';
 import ReadingLogView from './ReadingLogView';
+import CreateReadingLogForm from './CreateReadingLogForm';
 
 const Wrapper = styled.div`padding: 20px;`;
 
@@ -20,6 +21,7 @@ export function App({ user, readingLogIds, onClick }: Props) {
   return (
     <Wrapper>
       {user && <UserInfo>Hello, {user.nickname}!</UserInfo>}
+      <CreateReadingLogForm />
       <button onClick={onClick}>Load</button>
       {readingLogIds.map(id => <ReadingLogView key={id} readingLogId={id} />)}
     </Wrapper>

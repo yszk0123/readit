@@ -37,3 +37,27 @@ export interface UpdateReviewAction {
 export function updateReview(payload: UpdateReviewPayload): UpdateReviewAction {
   return { type: ActionTypes.UPDATE_REVIEW, payload };
 }
+
+export type CreateReadingLogPayload = {
+  title: string;
+};
+
+export interface CreateReadingLogAction {
+  type: ActionTypes.CREATE_READING_LOG;
+  payload: CreateReadingLogPayload;
+}
+
+export function createReadingLog(
+  payload: CreateReadingLogPayload,
+): CreateReadingLogAction {
+  return { type: ActionTypes.CREATE_READING_LOG, payload };
+}
+
+export interface SearchBookByTitleAction {
+  type: ActionTypes.SEARCH_BOOK_BY_TITLE;
+  payload: { title: string };
+}
+
+export function searchBookByTitle(title: string): SearchBookByTitleAction {
+  return { type: ActionTypes.SEARCH_BOOK_BY_TITLE, payload: { title } };
+}

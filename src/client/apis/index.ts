@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getBookData from './getBookData';
 
 export async function fetch(uri: string, options?: any) {
   const { data } = await axios.get(uri, options);
@@ -11,3 +12,11 @@ export async function patch(uri: string, data: any, options?: any) {
 
   return result;
 }
+
+export async function post(uri: string, data?: any, options?: any) {
+  const { data: result } = await axios.post(uri, data, options);
+
+  return result;
+}
+
+export { getBookData };
