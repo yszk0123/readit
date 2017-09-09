@@ -57,6 +57,7 @@ export interface ReadingLog {
   id: ID;
   book: Book;
   review: Review;
+  removed?: boolean;
 }
 
 // Action
@@ -74,6 +75,9 @@ export enum ActionTypes {
   CREATE_READING_LOG = 'CREATE_READING_LOG',
   UPDATE_REVIEW = 'UPDATE_REVIEW',
   SEARCH_BOOK_BY_TITLE = 'SEARCH_BOOK_BY_TITLE',
+  REMOVE_READING_LOG = 'REMOVE_READING_LOG',
+  REMOVE_READING_LOG_SUCCESS = 'REMOVE_READING_LOG_SUCCESS',
+  REMOVE_ENTITY = 'REMOVE_ENTITY',
 }
 
 // State

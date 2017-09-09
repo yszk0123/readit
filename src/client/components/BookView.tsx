@@ -27,7 +27,7 @@ const Label = styled.label``;
 
 interface Props {
   title: string;
-  subtitle: string;
+  subtitle: string | null;
   author: string;
   thumbnailLink: string;
   description: string;

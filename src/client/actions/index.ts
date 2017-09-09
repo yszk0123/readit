@@ -53,6 +53,15 @@ export function createReadingLog(
   return { type: ActionTypes.CREATE_READING_LOG, payload };
 }
 
+export interface RemoveReadingLogAction {
+  type: ActionTypes.REMOVE_READING_LOG;
+  payload: { readingLogId: ID };
+}
+
+export function removeReadingLog(readingLogId: ID): RemoveReadingLogAction {
+  return { type: ActionTypes.REMOVE_READING_LOG, payload: { readingLogId } };
+}
+
 export interface SearchBookByTitleAction {
   type: ActionTypes.SEARCH_BOOK_BY_TITLE;
   payload: { title: string };

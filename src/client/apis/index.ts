@@ -19,4 +19,10 @@ export async function post(uri: string, data?: any, options?: any) {
   return result;
 }
 
+export async function remove(uri: string, options?: any) {
+  const { data: result } = await axios.delete(uri, options);
+
+  return result;
+}
+
 export { getBookData };

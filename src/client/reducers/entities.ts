@@ -1,3 +1,4 @@
+import { readingLog } from './../schema/index';
 import { Action, State, ActionTypes } from '../interfaces';
 import merge from '../utils/merge';
 
@@ -15,6 +16,17 @@ export default function entities(
   switch (action.type) {
     case ActionTypes.FETCH_SUCCESS:
       return merge(state, action.payload.entities);
+    case ActionTypes.REMOVE_READING_LOG_SUCCESS: {
+      const readingLog = state.readingLogs[action.payload.readingLogId];
+
+      return {
+        ...state,
+        readingLogs: {
+          ...state.readingLogs,
+          [readingLog.id]: { ...readingLog, removed: true },
+        },
+      };
+    }
     default:
       return state;
   }
