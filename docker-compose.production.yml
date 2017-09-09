@@ -1,0 +1,13 @@
+version: "3"
+services:
+  readit-app:
+    expose:
+      - 80
+    environment:
+      APP_PORT: 80
+    depends_on:
+      - dali-database
+
+  readit-database:
+    volumes:
+      - volume-dali-database:/var/lib/postgresql/data

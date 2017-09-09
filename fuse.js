@@ -21,8 +21,7 @@ const fuse = FuseBox.init({
   plugins: [
     CSSPlugin(),
     EnvPlugin({
-      NODE_ENV:
-        process.env.NODE_ENV === 'production' ? 'production' : 'development',
+      NODE_ENV: isProduction ? 'production' : 'development',
     }),
     WebIndexPlugin({
       template: 'src/client/index.html',
@@ -37,23 +36,25 @@ const fuse = FuseBox.init({
   ],
 });
 
-fuse.dev({
-  port: 3000,
-  proxy: {
-    '/api': {
-      target: 'http://localhost:3001',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/',
+if (!isProduction) {
+  fuse.dev({
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/',
+        },
       },
     },
-  },
-});
+  });
+}
 
-fuse
-  .bundle('app')
-  .instructions('> index.tsx')
-  .hmr()
-  .watch();
+const app = fuse.bundle('app').instructions('> index.tsx');
+
+if (!isProduction) {
+  app.hmr().watch();
+}
 
 fuse.run();

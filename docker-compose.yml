@@ -1,0 +1,23 @@
+version: "3"
+services:
+  readit-app:
+    container_name: readit-app
+    image: yszk0123/readit-app
+    command: yarn db:migrate && yarn start
+    env_file:
+      - .env
+      - app.env
+    networks:
+      readit-app-network:
+      readit-proxy-network:
+      dali-app-network:
+
+volumes:
+  volume-readit-database:
+
+networks:
+  readit-app-network:
+  readit-proxy-network:
+  dali-app-network:
+    external:
+      name: dali_dali-app-network
