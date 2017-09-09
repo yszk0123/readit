@@ -1,4 +1,12 @@
-const { FuseBox, WebIndexPlugin } = require('fuse-box');
+const {
+  CSSPlugin,
+  EnvPlugin,
+  FuseBox,
+  QuantumPlugin,
+  WebIndexPlugin,
+} = require('fuse-box');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 const fuse = FuseBox.init({
   homeDir: 'src/client/',
@@ -11,11 +19,21 @@ const fuse = FuseBox.init({
     'redux-saga/effects': 'redux-saga/lib/effects',
   },
   plugins: [
+    CSSPlugin(),
+    EnvPlugin({
+      NODE_ENV:
+        process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    }),
     WebIndexPlugin({
       template: 'src/client/index.html',
       title: 'Readit',
       target: 'index.html',
     }),
+    isProduction &&
+      QuantumPlugin({
+        uglify: true,
+        treeshake: true,
+      }),
   ],
 });
 
@@ -34,7 +52,7 @@ fuse.dev({
 
 fuse
   .bundle('app')
-  .instructions('>index.tsx')
+  .instructions('> index.tsx')
   .hmr()
   .watch();
 
