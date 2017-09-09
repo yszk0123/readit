@@ -9,6 +9,11 @@ import CreateReadingLogForm from './CreateReadingLogForm';
 
 const Wrapper = styled.div`padding: 20px;`;
 
+const Button = styled.button`
+  padding: 8px 20px;
+  font-size: 1.6rem;
+`;
+
 const UserInfo = styled.div`font-size: 1.6rem;`;
 
 interface Props {
@@ -22,7 +27,7 @@ export function App({ user, readingLogIds, onClick }: Props) {
     <Wrapper>
       {user && <UserInfo>Hello, {user.nickname}!</UserInfo>}
       <CreateReadingLogForm />
-      <button onClick={onClick}>Load</button>
+      <Button onClick={onClick}>Load</Button>
       {readingLogIds.map(id => <ReadingLogView key={id} readingLogId={id} />)}
     </Wrapper>
   );

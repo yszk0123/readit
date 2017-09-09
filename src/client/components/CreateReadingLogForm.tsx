@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import { ID, ActionTypes, State, User, ReadingLog } from '../interfaces';
 import { createReadingLog, searchBookByTitle } from '../actions';
 
-const Wrapper = styled.div`padding: 20px;`;
+const Wrapper = styled.div`
+  padding: 20px;
+  font-size: 1.6rem;
+`;
 
 interface Props {
   title: string;
