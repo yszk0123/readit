@@ -1,4 +1,5 @@
 const {
+  CSSResourcePlugin,
   CSSPlugin,
   EnvPlugin,
   FuseBox,
@@ -19,7 +20,7 @@ const fuse = FuseBox.init({
     'redux-saga/effects': 'redux-saga/lib/effects',
   },
   plugins: [
-    CSSPlugin(),
+    [CSSResourcePlugin({ inline: true, dist: 'dist/assets' }), CSSPlugin()],
     EnvPlugin({
       NODE_ENV: isProduction ? 'production' : 'development',
     }),
@@ -57,4 +58,4 @@ if (!isProduction) {
   app.hmr().watch();
 }
 
-fuse.run();
+fuse.run({ chokidar: { ignored: /(^|[\/\\])\../ } });
