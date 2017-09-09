@@ -3,6 +3,8 @@ import { connect, MapDispatchToPropsParam } from 'react-redux';
 import styled from 'styled-components';
 import { Review, ReviewStatus, ReviewRating, State } from '../interfaces';
 import { updateReview } from '../actions';
+import Icon from './Icon';
+import Rating from './Rating';
 
 const Wrapper = styled.div`
   display: flex;
@@ -48,9 +50,15 @@ interface OwnProps {
 type Props = OwnProps & {
   onStatusChange(status: ReviewStatus): void;
   onRatingChange(rating: ReviewRating): void;
+  onRatingReset(): void;
 };
 
-export function ReviewView({ review, onStatusChange, onRatingChange }: Props) {
+export function ReviewView({
+  review,
+  onStatusChange,
+  onRatingChange,
+  onRatingReset,
+}: Props) {
   return (
     <Wrapper>
       <Label>
@@ -71,25 +79,11 @@ export function ReviewView({ review, onStatusChange, onRatingChange }: Props) {
           ))}
         </select>
       </Label>
-      <Label>
-        Rating:{' '}
-        <select
-          value={review.rating}
-          onChange={event => {
-            const rating = +event.target.value;
-            if (validateRating(rating)) {
-              onRatingChange(rating);
-            }
-          }}
-        >
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </Label>
+      <Rating
+        rating={review.rating}
+        onClick={onRatingChange}
+        onReset={onRatingReset}
+      />
     </Wrapper>
   );
 }
@@ -104,6 +98,9 @@ export default connect(
     },
     onRatingChange: (rating: ReviewRating) => {
       dispatch(updateReview({ reviewId: review.id, rating }));
+    },
+    onRatingReset: () => {
+      dispatch(updateReview({ reviewId: review.id, rating: 0 }));
     },
   }),
 )(ReviewView);

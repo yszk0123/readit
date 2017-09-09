@@ -18,6 +18,7 @@ export default function* createReadingLog({
     });
 
     const data = yield call(post, '/api/readingLogs', {
+      id: book.id,
       bookId: book.id,
       reviewId: review.id,
     });

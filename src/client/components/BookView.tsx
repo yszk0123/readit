@@ -23,7 +23,27 @@ const TextInfo = styled.div`
   padding: 1rem;
 `;
 
-const Label = styled.label``;
+const Label = styled.label`
+  padding: 4px 8px;
+  font-size: 1.8rem;
+`;
+const Sublabel = styled.label`
+  padding: 2px 8px;
+  font-size: 1.2rem;
+`;
+const Description = styled.label`
+  max-height: 180px;
+  overflow-y: scroll;
+  padding: 16px;
+  font-size: 1.4rem;
+  color: #444;
+`;
+
+const Subtitle = styled.label`
+  padding: 2px 8px;
+  font-size: 1.2rem;
+  color: gray;
+`;
 
 interface Props {
   title: string;
@@ -50,20 +70,14 @@ export default function BookView({
         <img alt="thumbnail" src={thumbnailLink} />
       </Cover>
       <TextInfo>
-        <Label>Title: {title}</Label>
-        <Label>Subtitle: {subtitle}</Label>
-        <Label>
-          Author: <span>{author}</span>
-        </Label>
-        <Label>
-          Description: <span>{description}</span>
-        </Label>
-        <Label>
+        <Label>{title}</Label>
+        <Subtitle>{subtitle}</Subtitle>
+        <Sublabel>{author}</Sublabel>
+        <Sublabel>
           ISBN: <span>{isbn || '(unknown)'}</span>
-        </Label>
-        <Label>
-          PageCount: <span>{pageCount}</span>
-        </Label>
+        </Sublabel>
+        <Sublabel>{pageCount} pages</Sublabel>
+        <Description>{description}</Description>
       </TextInfo>
     </Wrapper>
   );
