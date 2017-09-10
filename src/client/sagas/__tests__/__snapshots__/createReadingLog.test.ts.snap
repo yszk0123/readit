@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createReadingLog  1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "PUT": Object {
+    "action": Object {
+      "payload": Object {
+        "entities": Object {
+          "books": Object {
+            "book-1": Object {
+              "id": "book-1",
+            },
+          },
+          "readingLogs": Object {
+            "readingLog-1": Object {
+              "book": "book-1",
+              "id": "readingLog-1",
+              "review": "review-1",
+            },
+          },
+          "reviews": Object {
+            "review-1": Object {
+              "id": "review-1",
+            },
+          },
+        },
+        "ui": Object {
+          "readingLogs": Array [
+            "readingLog-1",
+          ],
+        },
+      },
+      "type": "FETCH_SUCCESS",
+    },
+    "channel": null,
+  },
+}
+`;

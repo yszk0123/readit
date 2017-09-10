@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui should add second id when fetch success 1`] = `
+Object {
+  "currentUser": null,
+  "readingLogs": Array [],
+  "reviews": Array [
+    "123",
+    "234",
+  ],
+  "titleInput": "",
+}
+`;
+
+exports[`ui should merge payload when fetch success 1`] = `
+Object {
+  "currentUser": null,
+  "readingLogs": Array [],
+  "reviews": Array [
+    "123",
+  ],
+  "titleInput": "",
+}
+`;
+
+exports[`ui should not add duplicate id when fetch success 1`] = `
+Object {
+  "currentUser": null,
+  "readingLogs": Array [],
+  "reviews": Array [
+    "123",
+  ],
+  "titleInput": "",
+}
+`;

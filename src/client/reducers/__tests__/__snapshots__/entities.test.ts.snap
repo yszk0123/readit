@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`entities should merge payload when fetch success 1`] = `
+Object {
+  "books": Object {},
+  "readingLogs": Object {},
+  "reviews": Object {
+    "123": Object {
+      "id": "123",
+    },
+  },
+  "users": Object {},
+}
+`;
