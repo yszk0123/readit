@@ -1,45 +1,38 @@
 import { ID, Action, ActionTypes } from '../interfaces';
 
-export type ReadingLogActions =
-  | FetchReadingLogsAction
-  | CreateReadingLogAction
-  | RemoveReadingLogAction;
+export type ReadingLogAction = FetchAll | Create | Remove;
 
-interface FetchReadingLogsPayload {
+interface FetchAllPayload {
   limit?: number;
 }
 
-export interface FetchReadingLogsAction extends Action {
+export interface FetchAll extends Action {
   type: ActionTypes.FETCH_READING_LOGS;
-  payload: FetchReadingLogsPayload;
+  payload: FetchAllPayload;
 }
 
-export function fetchReadingLogs(
-  payload: FetchReadingLogsPayload,
-): FetchReadingLogsAction {
+export function fetchAll(payload: FetchAllPayload): FetchAll {
   return { type: ActionTypes.FETCH_READING_LOGS, payload };
 }
 
-interface CreateReadingLogPayload {
+interface CreatePayload {
   title: string;
 }
 
-export interface CreateReadingLogAction {
+export interface Create {
   type: ActionTypes.CREATE_READING_LOG;
-  payload: CreateReadingLogPayload;
+  payload: CreatePayload;
 }
 
-export function createReadingLog(
-  payload: CreateReadingLogPayload,
-): CreateReadingLogAction {
+export function create(payload: CreatePayload): Create {
   return { type: ActionTypes.CREATE_READING_LOG, payload };
 }
 
-export interface RemoveReadingLogAction {
+export interface Remove {
   type: ActionTypes.REMOVE_READING_LOG;
   payload: { readingLogId: ID };
 }
 
-export function removeReadingLog(readingLogId: ID): RemoveReadingLogAction {
+export function remove(readingLogId: ID): Remove {
   return { type: ActionTypes.REMOVE_READING_LOG, payload: { readingLogId } };
 }

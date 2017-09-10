@@ -5,7 +5,7 @@ import { State, Book, Review } from '../interfaces';
 import { selectReadingLog } from '../selectors';
 import BookView from './BookView';
 import ReviewView from './ReviewView';
-import { removeReadingLog } from '../actions';
+import * as actions from '../actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ export default connect(
   },
   (dispatch, { readingLogId }: OwnProps) => ({
     onRemove: () => {
-      dispatch(removeReadingLog(readingLogId));
+      dispatch(actions.ReadingLog.remove(readingLogId));
     },
   }),
 )(ReadingLogView);

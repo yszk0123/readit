@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Review, ReviewStatus, ReviewRating, State } from '../interfaces';
-import { updateReview } from '../actions';
+import * as actions from '../actions';
 import Rating from './Rating';
 
 const Wrapper = styled.div`
@@ -89,13 +89,13 @@ export default connect(
   }),
   (dispatch, { review }) => ({
     onStatusChange: (status: ReviewStatus) => {
-      dispatch(updateReview({ reviewId: review.id, status }));
+      dispatch(actions.Review.update({ reviewId: review.id, status }));
     },
     onRatingChange: (rating: ReviewRating) => {
-      dispatch(updateReview({ reviewId: review.id, rating }));
+      dispatch(actions.Review.update({ reviewId: review.id, rating }));
     },
     onRatingReset: () => {
-      dispatch(updateReview({ reviewId: review.id, rating: 0 }));
+      dispatch(actions.Review.update({ reviewId: review.id, rating: 0 }));
     },
   }),
 )(ReviewView);

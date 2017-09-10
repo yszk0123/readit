@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createReadingLog  1`] = `
+exports[`ReadingLog should create 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "PUT": Object {

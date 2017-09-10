@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ID, State, User } from '../interfaces';
-import { fetchReadingLogs } from '../actions';
+import * as actions from '../actions';
 import { selectCurrentUser } from '../selectors';
 import ReadingLogView from './ReadingLogView';
 import CreateReadingLogForm from './CreateReadingLogForm';
@@ -40,7 +40,7 @@ export default connect(
   }),
   dispatch => ({
     onClick: () => {
-      dispatch(fetchReadingLogs({}));
+      dispatch(actions.ReadingLog.fetchAll({}));
     },
   }),
 )(App);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { State } from '../interfaces';
-import { createReadingLog, searchBookByTitle } from '../actions';
+import * as actions from '../actions';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -36,11 +36,11 @@ export default connect(
     onTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       const title = event.target.value;
       if (title) {
-        dispatch(searchBookByTitle(title));
+        dispatch(actions.searchBookByTitle(title));
       }
     },
     onCreateReadingLog: (title: string) => {
-      dispatch(createReadingLog({ title }));
+      dispatch(actions.ReadingLog.create({ title }));
     },
   }),
 )(CreateReadingLogForm);

@@ -4,10 +4,10 @@ import { post, getBookData } from '../../apis';
 import * as Actions from '../../actions';
 import * as ReadingLog from '../ReadingLog';
 
-describe('createReadingLog', () => {
-  it('', () => {
+describe('ReadingLog', () => {
+  it('should create', () => {
     const title = 'book-title';
-    const gen = ReadingLog.create(Actions.createReadingLog({ title }));
+    const gen = ReadingLog.create(Actions.ReadingLog.create({ title }));
     expect(gen.next().value).toEqual(call(getBookData, title));
 
     const bookData = { id: 'book-1' };

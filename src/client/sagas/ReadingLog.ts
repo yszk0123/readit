@@ -3,13 +3,9 @@ import * as schema from './../schema';
 import { call, put } from 'redux-saga/effects';
 import { ActionTypes, ReviewStatus } from '../interfaces';
 import * as apis from '../apis';
-import {
-  FetchReadingLogsAction,
-  CreateReadingLogAction,
-  RemoveReadingLogAction,
-} from '../actions';
+import * as actions from '../actions';
 
-export function* fetch({ payload: { limit } }: FetchReadingLogsAction) {
+export function* fetch({ payload: { limit } }: actions.ReadingLog.FetchAll) {
   try {
     const data = yield call(apis.fetch, `/api/readingLogs`, {
       params: { limit, _expand: ['book', 'review'] },
@@ -24,7 +20,7 @@ export function* fetch({ payload: { limit } }: FetchReadingLogsAction) {
   }
 }
 
-export function* create({ payload: { title } }: CreateReadingLogAction) {
+export function* create({ payload: { title } }: actions.ReadingLog.Create) {
   try {
     const bookData = yield call(apis.getBookData, title);
     const book = yield call(apis.post, '/api/books', bookData);
@@ -51,7 +47,9 @@ export function* create({ payload: { title } }: CreateReadingLogAction) {
   }
 }
 
-export function* remove({ payload: { readingLogId } }: RemoveReadingLogAction) {
+export function* remove({
+  payload: { readingLogId },
+}: actions.ReadingLog.Remove) {
   try {
     yield call(apis.remove, `/api/readingLogs/${readingLogId}`);
     yield put({
