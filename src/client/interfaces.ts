@@ -24,6 +24,7 @@ export interface User {
 
 export interface Book {
   id: ID;
+  originalLink: string;
   title: string;
   subtitle: string | null;
   author: string;
@@ -35,13 +36,6 @@ export interface Book {
   publisher: string;
   publishedAt: DateOnly;
   isbn: string | null;
-  meta: {
-    source: {
-      type: string;
-      link: string;
-      searchText: string;
-    };
-  };
 }
 
 export interface Review {

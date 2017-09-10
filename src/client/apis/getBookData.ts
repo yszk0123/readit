@@ -23,6 +23,7 @@ export async function getBookData(searchText: string): Promise<Book> {
 
   return {
     id: item.id,
+    originalLink: item.selfLink,
     title: volumeInfo.title,
     subtitle: volumeInfo.subtitle,
     author: (volumeInfo.authors || []).join(', '),
@@ -38,12 +39,5 @@ export async function getBookData(searchText: string): Promise<Book> {
     publishedAt: volumeInfo.publishedDate,
     isbn:
       (isbn13 && isbn13.identifier) || (isbn10 && isbn10.identifier) || null,
-    meta: {
-      source: {
-        type: 'https://www.googleapis.com/books/v1',
-        link: item.selfLink,
-        searchText: uri,
-      },
-    },
   };
 }

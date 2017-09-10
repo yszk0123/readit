@@ -1,4 +1,8 @@
+require('dotenv').config();
+
+const env = process.env.NODE_ENV || 'development';
+
 export default {
-  appPort: process.env.APP_PORT || 3000,
-  databaseUrl: '',
+  ...require(`./serverConfig.${env}`).default,
+  databaseUrl: require('./database')[env].url,
 };

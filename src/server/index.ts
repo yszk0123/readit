@@ -2,14 +2,16 @@ import * as path from 'path';
 import * as express from 'express';
 import * as favicon from 'serve-favicon';
 import * as morgan from 'morgan';
-import serverConfig from '../config/serverConfig';
-import apiRouter from '../routes';
+import serverConfig from './config/serverConfig';
+import apiRouter from './routes';
+import { sequelize } from './models';
 
-export default async function setupAppServer() {
+async function run() {
   const { appPort } = serverConfig;
   const app = express();
+  await sequelize.sync();
 
-  const rootDir = path.join(__dirname, '..', '..', '..', '..');
+  const rootDir = path.join(__dirname, '..', '..');
   const publicDir = path.join(rootDir, 'dist', 'public');
 
   app.use(morgan('combined'));
@@ -24,3 +26,14 @@ export default async function setupAppServer() {
     console.log(`App is now running on http://localhost:${appPort}`);
   });
 }
+
+async function main() {
+  try {
+    await run();
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+}
+
+main();

@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as Sequelize from 'sequelize';
 import serverConfig from '../config/serverConfig';
 
-const modelNames = ['User', 'Book', 'Review', 'ReadingLog'];
+const modelNames = ['User', 'Book', 'Review'];
 
 const sequelize = new Sequelize(serverConfig.databaseUrl, {
   dialect: 'postgres',
@@ -11,10 +11,7 @@ const sequelize = new Sequelize(serverConfig.databaseUrl, {
 const models: any = {};
 
 modelNames.forEach(name => {
-  models[name] = sequelize.import(
-    name,
-    require(path.join(__dirname, '..', name)),
-  );
+  models[name] = sequelize.import(name, require(path.join(__dirname, name)));
 });
 
 modelNames.forEach(name => {
@@ -24,6 +21,6 @@ modelNames.forEach(name => {
   }
 });
 
-const { User, Book, Review, ReadingLog } = models;
-export { User, Book, Review, ReadingLog };
+const { User, Book, Review } = models;
+export { User, Book, Review };
 export { sequelize };

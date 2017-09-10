@@ -19,8 +19,6 @@ export default function createUser(sequelize: Sequelize, DataTypes: DataTypes) {
         allowNull: false,
         unique: true,
       },
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
     },
     {
       tableName: 'User',
@@ -30,8 +28,9 @@ export default function createUser(sequelize: Sequelize, DataTypes: DataTypes) {
 
   // FIXME
   const _User = User as any;
-  _User.associate = ({ ReadingLog }: IModels) => {
-    _User.ReadingLogs = User.hasMany(ReadingLog, { foreignKey: 'ownerId' });
+  _User.associate = ({ Book, Review }: IModels) => {
+    _User.Books = User.hasMany(Book, { foreignKey: 'ownerId' });
+    _User.Reviews = User.hasMany(Review, { foreignKey: 'ownerId' });
   };
 
   return User;
