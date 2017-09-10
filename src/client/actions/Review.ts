@@ -17,7 +17,7 @@ export interface FetchAll {
   payload: FetchAllPayload;
 }
 
-export function fetchAll(payload: FetchAllPayload): FetchAll {
+export function fetchAll(payload: FetchAllPayload = {}): FetchAll {
   return { type: ActionTypes.FETCH_REVIEWS, payload };
 }
 

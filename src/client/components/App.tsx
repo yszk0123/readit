@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ID, State, User } from '../interfaces';
 import * as actions from '../actions';
 import { selectCurrentUser } from '../selectors';
-import ReadingLogView from './ReadingLogView';
-import CreateReadingLogForm from './CreateReadingLogForm';
+import ReviewItem from './ReviewItem';
+import CreateReviewForm from './CreateReviewForm';
 
 const Wrapper = styled.div`padding: 20px;`;
 
@@ -18,17 +18,17 @@ const UserInfo = styled.div`font-size: 1.6rem;`;
 
 interface Props {
   user: User | null;
-  readingLogIds: ID[];
+  reviewIds: ID[];
   onClick: React.ReactEventHandler<HTMLElement>;
 }
 
-export function App({ user, readingLogIds, onClick }: Props) {
+export function App({ user, reviewIds, onClick }: Props) {
   return (
     <Wrapper>
       {user && <UserInfo>Hello, {user.nickname}!</UserInfo>}
-      <CreateReadingLogForm />
+      <CreateReviewForm />
       <Button onClick={onClick}>Load</Button>
-      {readingLogIds.map(id => <ReadingLogView key={id} readingLogId={id} />)}
+      {reviewIds.map(id => <ReviewItem key={id} reviewId={id} />)}
     </Wrapper>
   );
 }
@@ -36,11 +36,11 @@ export function App({ user, readingLogIds, onClick }: Props) {
 export default connect(
   (state: State) => ({
     user: selectCurrentUser(state),
-    readingLogIds: state.ui.readingLogs,
+    reviewIds: state.ui.reviews,
   }),
   dispatch => ({
     onClick: () => {
-      dispatch(actions.ReadingLog.fetchAll({}));
+      dispatch(actions.Review.fetchAll());
     },
   }),
 )(App);

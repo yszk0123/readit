@@ -46,8 +46,10 @@ export interface Book {
 
 export interface Review {
   id: ID;
+  book: Book;
   status: ReviewStatus;
   rating: ReviewRating;
+  removed?: boolean;
 }
 
 export interface ReadingLog {

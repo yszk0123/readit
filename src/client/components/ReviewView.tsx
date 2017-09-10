@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Review, ReviewStatus, ReviewRating, State } from '../interfaces';
+import { ID, Review, ReviewStatus, ReviewRating, State } from '../interfaces';
 import * as actions from '../actions';
+import { selectReview } from '../selectors';
 import Rating from './Rating';
 
 const Wrapper = styled.div`
@@ -39,10 +40,11 @@ const STATUS = [
 ];
 
 interface OwnProps {
-  review: Review;
+  reviewId: ID;
 }
 
 type Props = OwnProps & {
+  review: Review;
   onStatusChange(status: ReviewStatus): void;
   onRatingChange(rating: ReviewRating): void;
   onRatingReset(): void;
@@ -84,18 +86,18 @@ export function ReviewView({
 }
 
 export default connect(
-  (state: State, { review }: OwnProps) => ({
-    review,
+  (state: State, { reviewId }: OwnProps) => ({
+    review: selectReview(reviewId, state),
   }),
-  (dispatch, { review }) => ({
+  (dispatch, { reviewId }) => ({
     onStatusChange: (status: ReviewStatus) => {
-      dispatch(actions.Review.update({ reviewId: review.id, status }));
+      dispatch(actions.Review.update({ reviewId, status }));
     },
     onRatingChange: (rating: ReviewRating) => {
-      dispatch(actions.Review.update({ reviewId: review.id, rating }));
+      dispatch(actions.Review.update({ reviewId, rating }));
     },
     onRatingReset: () => {
-      dispatch(actions.Review.update({ reviewId: review.id, rating: 0 }));
+      dispatch(actions.Review.update({ reviewId, rating: 0 }));
     },
   }),
 )(ReviewView);

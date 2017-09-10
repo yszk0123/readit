@@ -1,7 +1,8 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 import { ActionTypes } from '../interfaces';
 import * as Review from './Review';
 import * as ReadingLog from './ReadingLog';
+import * as actions from '../actions';
 
 export default function* root() {
   try {
@@ -13,6 +14,8 @@ export default function* root() {
     yield takeEvery(ActionTypes.CREATE_REVIEW, Review.create);
     yield takeEvery(ActionTypes.UPDATE_REVIEW, Review.update);
     yield takeEvery(ActionTypes.REMOVE_REVIEW, Review.remove);
+
+    yield put(actions.Review.fetchAll());
   } catch (error) {
     console.log('Error in saga!:', error);
   }

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { State, Book, Review } from '../interfaces';
-import { selectReadingLog } from '../selectors';
+import { ID, State, Book } from '../interfaces';
+import { selectReview } from '../selectors';
 import BookView from './BookView';
 import ReviewView from './ReviewView';
 import * as actions from '../actions';
@@ -13,17 +13,16 @@ const Wrapper = styled.div`
 `;
 
 interface OwnProps {
-  readingLogId: string;
+  reviewId: ID;
 }
 
 type Props = OwnProps & {
   book: Book | null;
-  review: Review | null;
   removed: boolean;
   onRemove(): void;
 };
 
-export function ReadingLogView({ book, review, removed, onRemove }: Props) {
+export function ReviewItem({ book, reviewId, removed, onRemove }: Props) {
   return (
     <Wrapper style={removed ? { opacity: 0.5 } : {}}>
       {book && (
@@ -39,7 +38,7 @@ export function ReadingLogView({ book, review, removed, onRemove }: Props) {
       )}
       {!removed && (
         <div>
-          {review && <ReviewView review={review} />}
+          {reviewId && <ReviewView reviewId={reviewId} />}
           <button onClick={onRemove}>Remove</button>
         </div>
       )}
@@ -48,19 +47,19 @@ export function ReadingLogView({ book, review, removed, onRemove }: Props) {
 }
 
 export default connect(
-  (state: State, { readingLogId }: OwnProps) => {
-    const readingLog = selectReadingLog(readingLogId, state);
+  (state: State, { reviewId }: OwnProps) => {
+    const review = selectReview(reviewId, state);
 
     return {
-      book: readingLog && readingLog.book,
-      review: readingLog && readingLog.review,
-      removed: (readingLog && readingLog.removed) || false,
-      readingLogId,
+      book: review && review.book,
+      review: review && review,
+      removed: (review && review.removed) || false,
+      reviewId,
     };
   },
-  (dispatch, { readingLogId }: OwnProps) => ({
+  (dispatch, { reviewId }: OwnProps) => ({
     onRemove: () => {
-      dispatch(actions.ReadingLog.remove(readingLogId));
+      dispatch(actions.Review.remove(reviewId));
     },
   }),
-)(ReadingLogView);
+)(ReviewItem);

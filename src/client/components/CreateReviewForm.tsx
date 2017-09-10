@@ -12,18 +12,14 @@ const Wrapper = styled.div`
 interface Props {
   title: string;
   onTitleChange: React.ReactEventHandler<HTMLInputElement>;
-  onCreateReadingLog(title: string): void;
+  onCreate(title: string): void;
 }
 
-export function CreateReadingLogForm({
-  title,
-  onTitleChange,
-  onCreateReadingLog,
-}: Props) {
+export function CreateReviewForm({ title, onTitleChange, onCreate }: Props) {
   return (
     <Wrapper>
       <input value={title} onChange={onTitleChange} />
-      <button onClick={() => onCreateReadingLog(title)}>Create</button>
+      <button onClick={() => onCreate(title)}>Create</button>
     </Wrapper>
   );
 }
@@ -39,8 +35,8 @@ export default connect(
         dispatch(actions.searchBookByTitle(title));
       }
     },
-    onCreateReadingLog: (title: string) => {
-      dispatch(actions.ReadingLog.create({ title }));
+    onCreate: (title: string) => {
+      dispatch(actions.Review.create({ title }));
     },
   }),
-)(CreateReadingLogForm);
+)(CreateReviewForm);

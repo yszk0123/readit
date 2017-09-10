@@ -23,6 +23,8 @@ export function* create({ payload: { title } }: actions.Review.Create) {
     const book = yield call(apis.post, '/api/books', bookData);
 
     const review = yield call(apis.post, '/api/reviews', {
+      id: book.id,
+      bookId: book.id,
       status: ReviewStatus.PLAN_TO_BUY,
       rating: 0,
     });

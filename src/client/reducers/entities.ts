@@ -16,14 +16,14 @@ export default function entities(
   switch (action.type) {
     case ActionTypes.FETCH_SUCCESS:
       return merge(state, action.payload.entities);
-    case ActionTypes.REMOVE_READING_LOG_SUCCESS: {
-      const readingLog = state.readingLogs[action.payload.readingLogId];
+    case ActionTypes.REMOVE_REVIEW_SUCCESS: {
+      const review = state.reviews[action.payload.reviewId];
 
       return {
         ...state,
-        readingLogs: {
-          ...state.readingLogs,
-          [readingLog.id]: { ...readingLog, removed: true },
+        reviews: {
+          ...state.reviews,
+          [review.id]: { ...review, removed: true },
         },
       };
     }
