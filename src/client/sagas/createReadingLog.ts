@@ -1,8 +1,7 @@
-import { readingLog } from './../schema/index';
 import { normalize } from 'normalizr';
 import * as schema from './../schema';
-import { call, take, put, takeEvery } from 'redux-saga/effects';
-import { Action, ActionTypes, ReviewStatus } from '../interfaces';
+import { call, put } from 'redux-saga/effects';
+import { ActionTypes, ReviewStatus } from '../interfaces';
 import { post, getBookData } from '../apis';
 import { CreateReadingLogAction } from '../actions';
 

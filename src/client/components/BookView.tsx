@@ -1,9 +1,5 @@
 import * as React from 'react';
-import { connect, MapDispatchToPropsParam } from 'react-redux';
 import styled from 'styled-components';
-import { ActionTypes, State, User, Book, ReadingLog } from '../interfaces';
-import { selectCurrentUser, selectReadingLog } from '../selectors';
-import ReadingStatusView from './ReadingLogView';
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,6 +1,5 @@
-import { book, readingLog } from './../../schema/index';
-import { call, take, put, takeEvery } from 'redux-saga/effects';
-import { Action, ActionTypes, ReviewStatus } from '../../interfaces';
+import { call } from 'redux-saga/effects';
+import { ReviewStatus } from '../../interfaces';
 import { post, getBookData } from '../../apis';
 import * as Actions from '../../actions';
 import createReadingLog from '../createReadingLog';

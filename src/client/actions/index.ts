@@ -1,5 +1,3 @@
-import { FetchReadingLogsAction } from './index';
-import { readingLog } from './../schema/index';
 import {
   ID,
   Action,

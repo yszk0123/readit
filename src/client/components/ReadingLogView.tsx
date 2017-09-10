@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { ActionTypes, State, User, Book, Review } from '../interfaces';
-import { selectCurrentUser, selectReadingLog } from '../selectors';
+import { State, Book, Review } from '../interfaces';
+import { selectReadingLog } from '../selectors';
 import BookView from './BookView';
 import ReviewView from './ReviewView';
 import { removeReadingLog } from '../actions';
@@ -11,25 +11,6 @@ const Wrapper = styled.div`
   display: flex;
   padding: 10px;
 `;
-
-const BookInfo = styled.div`
-  display: flex;
-  font-size: 1.6rem;
-`;
-
-const Cover = styled.div`
-  padding: 1rem;
-  width: 128px;
-  height: 128px;
-`;
-
-const TextInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-`;
-
-const Label = styled.label``;
 
 interface OwnProps {
   readingLogId: string;

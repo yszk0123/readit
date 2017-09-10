@@ -1,4 +1,3 @@
-import { readingLog } from './../schema/index';
 import { Action, State, ActionTypes } from '../interfaces';
 import merge from '../utils/merge';
 

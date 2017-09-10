@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import * as schema from './../schema';
-import { call, take, put, takeEvery } from 'redux-saga/effects';
-import { Action, ActionTypes } from '../interfaces';
+import { call, put } from 'redux-saga/effects';
+import { ActionTypes } from '../interfaces';
 import { fetch } from '../apis';
 import { FetchReadingLogsAction } from '../actions';
 

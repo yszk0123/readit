@@ -1,7 +1,5 @@
-import { FetchReadingLogsAction, UpdateReviewAction } from './../actions/index';
-import { call, take, put, takeEvery } from 'redux-saga/effects';
-import { Action, ActionTypes } from '../interfaces';
-import { fetch } from '../apis';
+import { takeEvery } from 'redux-saga/effects';
+import { ActionTypes } from '../interfaces';
 import fetchReadingLogs from './fetchReadingLogs';
 import updateReview from './updateReview';
 import createReadingLog from './createReadingLog';

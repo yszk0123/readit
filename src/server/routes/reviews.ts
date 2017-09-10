@@ -1,5 +1,4 @@
 import { Router as createRouter } from 'express';
-import * as bodyParser from 'body-parser';
 import { Review } from '../models';
 
 const router = createRouter();

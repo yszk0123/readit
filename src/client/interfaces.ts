@@ -1,4 +1,3 @@
-import { readingLog } from './schema/index';
 import { Action as ReduxAction } from 'redux';
 
 // Type

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { ID, ActionTypes, State, User, ReadingLog } from '../interfaces';
+import { ID, State, User } from '../interfaces';
 import { fetchReadingLogs } from '../actions';
-import { selectCurrentUser, selectReadingLog } from '../selectors';
+import { selectCurrentUser } from '../selectors';
 import ReadingLogView from './ReadingLogView';
 import CreateReadingLogForm from './CreateReadingLogForm';
 

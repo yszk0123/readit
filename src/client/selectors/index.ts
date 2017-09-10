@@ -1,4 +1,3 @@
-import { readingLog, book, review } from './../schema/index';
 import { denormalize } from 'normalizr';
 import { User, Book, Review, ReadingLog, State } from '../interfaces';
 import * as schema from '../schema';

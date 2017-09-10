@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { ID, ActionTypes, State, User, ReadingLog } from '../interfaces';
+import { State } from '../interfaces';
 import { createReadingLog, searchBookByTitle } from '../actions';
 
 const Wrapper = styled.div`

@@ -1,4 +1,3 @@
-import { readingLog } from './../../client/schema/index';
 import { Router as createRouter } from 'express';
 import * as bodyParser from 'body-parser';
 import users from './users';

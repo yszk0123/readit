@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { connect, MapDispatchToPropsParam } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Review, ReviewStatus, ReviewRating, State } from '../interfaces';
 import { updateReview } from '../actions';
-import Icon from './Icon';
 import Rating from './Rating';
 
 const Wrapper = styled.div`
@@ -25,10 +24,6 @@ const statusMap: Record<string, string> = {
 
 function formatStatus(status: ReviewStatus): string {
   return statusMap[status] || '(unknown)';
-}
-
-function validateRating(maybeRating: number): maybeRating is ReviewRating {
-  return maybeRating >= 0 && maybeRating <= 5;
 }
 
 function validateStatus(maybeStatus: string): maybeStatus is ReviewStatus {
