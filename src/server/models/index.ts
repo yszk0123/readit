@@ -1,7 +1,6 @@
 import * as path from 'path';
 import * as Sequelize from 'sequelize';
 import serverConfig from '../config/serverConfig';
-import { IModels } from '../interfaces';
 
 const modelNames = ['User', 'Book', 'Review', 'ReadingLog'];
 
