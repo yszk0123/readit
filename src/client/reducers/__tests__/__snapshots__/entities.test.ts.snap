@@ -7,6 +7,8 @@ Object {
   "reviews": Object {
     "123": Object {
       "id": "123",
+      "rating": 0,
+      "status": "PLAN_TO_BUY",
     },
   },
   "users": Object {},

@@ -1,5 +1,6 @@
-import { Action, ActionTypes, State } from '../interfaces';
+import { ActionTypes, State } from '../interfaces';
 import merge from '../utils/merge';
+import { Action } from '../actions';
 
 const initialState: State['ui'] = {
   currentUser: null,

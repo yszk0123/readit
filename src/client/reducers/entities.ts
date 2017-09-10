@@ -1,5 +1,6 @@
-import { Action, State, ActionTypes } from '../interfaces';
+import { State, ActionTypes } from '../interfaces';
 import merge from '../utils/merge';
+import { Action } from '../actions';
 
 const initialState: State['entities'] = {
   users: {},

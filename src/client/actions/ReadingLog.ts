@@ -1,12 +1,12 @@
-import { ID, Action, ActionTypes } from '../interfaces';
+import { ID, ActionTypes } from '../interfaces';
 
-export type ReadingLogAction = FetchAll | Create | Remove;
+export type ReadingLogAction = FetchAll | Create | Remove | RemoveSuccess;
 
 interface FetchAllPayload {
   limit?: number;
 }
 
-export interface FetchAll extends Action {
+export interface FetchAll {
   type: ActionTypes.FETCH_READING_LOGS;
   payload: FetchAllPayload;
 }

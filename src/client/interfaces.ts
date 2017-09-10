@@ -1,5 +1,3 @@
-import { Action as ReduxAction } from 'redux';
-
 // Type
 
 export type ID = string;
@@ -61,12 +59,8 @@ export interface ReadingLog {
 
 // Action
 
-export interface Action extends ReduxAction {
-  payload: any;
-}
-
 export enum ActionTypes {
-  HELLO = 'HELLO',
+  NOOP = 'NOO',
   CHANGE_NAME = 'CHANGE_NAME',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
   FETCH_FAILURE = 'FETCH_FAILURE',

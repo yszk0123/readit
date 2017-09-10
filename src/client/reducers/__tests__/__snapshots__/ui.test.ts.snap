@@ -2,6 +2,7 @@
 
 exports[`ui should add second id when fetch success 1`] = `
 Object {
+  "books": Array [],
   "currentUser": null,
   "readingLogs": Array [],
   "reviews": Array [
@@ -14,6 +15,7 @@ Object {
 
 exports[`ui should merge payload when fetch success 1`] = `
 Object {
+  "books": Array [],
   "currentUser": null,
   "readingLogs": Array [],
   "reviews": Array [
@@ -25,6 +27,7 @@ Object {
 
 exports[`ui should not add duplicate id when fetch success 1`] = `
 Object {
+  "books": Array [],
   "currentUser": null,
   "readingLogs": Array [],
   "reviews": Array [

@@ -1,15 +1,11 @@
-import { ActionTypes } from '../../interfaces';
 import { ID } from '../../interfaces';
+import * as actions from '../../actions';
 import ui from '../ui';
 
 describe('ui', () => {
   function fetchSuccess(reviewId: ID) {
-    return {
-      type: ActionTypes.FETCH_SUCCESS,
-      payload: { ui: { reviews: [reviewId] } },
-    };
+    return actions.fetchSuccess({ ui: { reviews: [reviewId] } });
   }
-  const noopAction = { type: 'NOOP', payload: {} };
 
   it('should merge payload when fetch success', () => {
     expect(ui(undefined, fetchSuccess('123'))).toMatchSnapshot();
@@ -22,7 +18,7 @@ describe('ui', () => {
   });
 
   it('should add second id when fetch success', () => {
-    const initialState = ui(undefined, noopAction);
+    const initialState = ui(undefined, actions.noop());
     const nextState = ui(initialState, fetchSuccess('123'));
     expect(ui(nextState, fetchSuccess('234'))).toMatchSnapshot();
   });
