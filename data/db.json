@@ -22,12 +22,14 @@
     {
       "id": "1",
       "status": "READ",
-      "rating": 5
+      "rating": 5,
+      "bookId": "123"
     },
     {
       "id": "2",
       "status": "PLAN_TO_BUY",
-      "rating": 0
+      "rating": 0,
+      "bookId": "234"
     }
   ],
   "books": [
