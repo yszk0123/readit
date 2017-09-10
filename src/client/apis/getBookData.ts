@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Book } from '../interfaces';
 
-export default async function getBookData(searchText: string): Promise<Book> {
+export async function getBookData(searchText: string): Promise<Book> {
   const uri = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
     searchText,
   )}`;
