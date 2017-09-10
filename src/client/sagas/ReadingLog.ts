@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import * as schema from './../schema';
 import { call, put } from 'redux-saga/effects';
-import { ActionTypes, ReviewStatus } from '../interfaces';
+import { ReviewStatus } from '../interfaces';
 import * as apis from '../apis';
 import * as actions from '../actions';
 
@@ -11,12 +11,9 @@ export function* fetch({ payload: { limit } }: actions.ReadingLog.FetchAll) {
       params: { limit, _expand: ['book', 'review'] },
     });
     const { entities, result } = normalize(data, [schema.readingLog]);
-    yield put({
-      type: ActionTypes.FETCH_SUCCESS,
-      payload: { entities, ui: { readingLogs: result } },
-    });
+    yield put(actions.fetchSuccess({ entities, ui: { readingLogs: result } }));
   } catch (error) {
-    yield put({ type: ActionTypes.FETCH_FAILURE, payload: error });
+    yield put(actions.fetchFailure(error));
   }
 }
 
@@ -38,12 +35,11 @@ export function* create({ payload: { title } }: actions.ReadingLog.Create) {
     data.review = review;
 
     const { entities, result } = normalize(data, schema.readingLog);
-    yield put({
-      type: ActionTypes.FETCH_SUCCESS,
-      payload: { entities, ui: { readingLogs: [result] } },
-    });
+    yield put(
+      actions.fetchSuccess({ entities, ui: { readingLogs: [result] } }),
+    );
   } catch (error) {
-    yield put({ type: ActionTypes.FETCH_FAILURE, payload: error });
+    yield put(actions.fetchFailure(error));
   }
 }
 
@@ -52,11 +48,8 @@ export function* remove({
 }: actions.ReadingLog.Remove) {
   try {
     yield call(apis.remove, `/api/readingLogs/${readingLogId}`);
-    yield put({
-      type: ActionTypes.REMOVE_READING_LOG_SUCCESS,
-      payload: { readingLogId },
-    });
+    yield put(actions.ReadingLog.removeSuccess(readingLogId));
   } catch (error) {
-    yield put({ type: ActionTypes.FETCH_FAILURE, payload: error });
+    yield put(actions.fetchFailure(error));
   }
 }

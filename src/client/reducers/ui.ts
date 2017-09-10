@@ -4,6 +4,8 @@ import merge from '../utils/merge';
 const initialState: State['ui'] = {
   currentUser: null,
   readingLogs: [],
+  books: [],
+  reviews: [],
   titleInput: '',
 };
 

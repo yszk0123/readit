@@ -36,3 +36,15 @@ export interface Remove {
 export function remove(readingLogId: ID): Remove {
   return { type: ActionTypes.REMOVE_READING_LOG, payload: { readingLogId } };
 }
+
+export interface RemoveSuccess {
+  type: ActionTypes.REMOVE_READING_LOG_SUCCESS;
+  payload: { readingLogId: ID };
+}
+
+export function removeSuccess(readingLogId: ID): RemoveSuccess {
+  return {
+    type: ActionTypes.REMOVE_READING_LOG_SUCCESS,
+    payload: { readingLogId },
+  };
+}

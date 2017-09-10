@@ -91,6 +91,8 @@ export interface State {
   ui: {
     currentUser: ID | null;
     readingLogs: ID[];
+    books: ID[];
+    reviews: ID[];
     titleInput: string;
   };
 }
