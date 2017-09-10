@@ -1,6 +1,11 @@
 import { ID, Action, ActionTypes } from '../interfaces';
 
-export interface FetchReadingLogsPayload {
+export type ReadingLogActions =
+  | FetchReadingLogsAction
+  | CreateReadingLogAction
+  | RemoveReadingLogAction;
+
+interface FetchReadingLogsPayload {
   limit?: number;
 }
 
@@ -15,9 +20,9 @@ export function fetchReadingLogs(
   return { type: ActionTypes.FETCH_READING_LOGS, payload };
 }
 
-export type CreateReadingLogPayload = {
+interface CreateReadingLogPayload {
   title: string;
-};
+}
 
 export interface CreateReadingLogAction {
   type: ActionTypes.CREATE_READING_LOG;

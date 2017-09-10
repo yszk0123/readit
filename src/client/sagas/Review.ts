@@ -5,7 +5,7 @@ import { ActionTypes } from '../interfaces';
 import { patch } from '../apis';
 import { UpdateReviewAction } from '../actions';
 
-export default function* updateReview({
+export function* update({
   payload: { reviewId, status, rating },
 }: UpdateReviewAction) {
   try {

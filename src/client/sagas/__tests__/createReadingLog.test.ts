@@ -2,12 +2,12 @@ import { call } from 'redux-saga/effects';
 import { ReviewStatus } from '../../interfaces';
 import { post, getBookData } from '../../apis';
 import * as Actions from '../../actions';
-import createReadingLog from '../createReadingLog';
+import * as ReadingLog from '../ReadingLog';
 
 describe('createReadingLog', () => {
   it('', () => {
     const title = 'book-title';
-    const gen = createReadingLog(Actions.createReadingLog({ title }));
+    const gen = ReadingLog.create(Actions.createReadingLog({ title }));
     expect(gen.next().value).toEqual(call(getBookData, title));
 
     const bookData = { id: 'book-1' };

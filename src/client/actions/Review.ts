@@ -1,6 +1,8 @@
 import { ID, ActionTypes, ReviewStatus, ReviewRating } from '../interfaces';
 
-export type UpdateReviewPayload = Partial<{
+export type ReviewAction = UpdateReviewAction;
+
+type UpdateReviewPayload = Partial<{
   reviewId: ID;
   status: ReviewStatus;
   rating: ReviewRating;
