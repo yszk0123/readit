@@ -39,14 +39,16 @@ const fuse = FuseBox.init({
 
 if (!isProduction) {
   fuse.dev({
+    root: 'dist/public',
     port: 3000,
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/',
-        },
+      },
+      '/login': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
       },
     },
   });

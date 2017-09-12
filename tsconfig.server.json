@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": false,
-    "outDir": "./dist/",
+    "outDir": "./dist/server",
     "sourceMap": true,
     "allowJs": true,
     "strict": true,

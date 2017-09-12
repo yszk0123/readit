@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Book } from '../interfaces';
 
-export async function getBookData(searchText: string): Promise<Book> {
+export async function getBookData(searchText: string): Promise<Partial<Book>> {
   const uri = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
     searchText,
   )}`;
@@ -22,7 +22,6 @@ export async function getBookData(searchText: string): Promise<Book> {
     volumeInfo.industryIdentifiers.find((id: any) => id.type === 'ISBN_13');
 
   return {
-    id: item.id,
     originalLink: item.selfLink,
     title: volumeInfo.title,
     subtitle: volumeInfo.subtitle,

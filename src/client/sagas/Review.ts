@@ -19,15 +19,17 @@ export function* fetch({ payload: { limit } }: actions.Review.FetchAll) {
 
 export function* create({ payload: { title } }: actions.Review.Create) {
   try {
-    const bookData = yield call(apis.getBookData, title);
-    const book = yield call(apis.post, '/api/books', bookData);
-
     const review = yield call(apis.post, '/api/reviews', {
-      id: book.id,
-      bookId: book.id,
       status: ReviewStatus.PLAN_TO_BUY,
       rating: 0,
     });
+
+    const bookData = yield call(apis.getBookData, title);
+    const book = yield call(apis.post, '/api/books', {
+      ...bookData,
+      reviewId: review.id,
+    });
+
     review.book = book;
 
     const { entities, result } = normalize(review, schema.review);
