@@ -1,18 +1,9 @@
-import axios from 'axios';
-import { Book } from '../interfaces';
+import { BookData } from '../interfaces';
 
-export async function getBookData(searchText: string): Promise<Partial<Book>> {
-  const uri = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-    searchText,
-  )}`;
-  const { data } = await axios(uri);
-
-  if (!data || !data.totalItems) {
-    throw new Error('Not found');
-  }
-
-  const [item] = data.items;
-  const { volumeInfo } = item;
+export default function transformFromGoogleBookSearchResult(
+  item: any,
+): BookData {
+  const { searchInfo, volumeInfo } = item;
   const { imageLinks } = volumeInfo;
   const isbn10 =
     volumeInfo.industryIdentifiers &&
@@ -26,11 +17,11 @@ export async function getBookData(searchText: string): Promise<Partial<Book>> {
     title: volumeInfo.title,
     subtitle: volumeInfo.subtitle,
     author: (volumeInfo.authors || []).join(', '),
-    thumbnailLink: imageLinks.smallThumbnail || imageLinks.thumbnail || null,
-    description:
-      volumeInfo.description ||
-      (item.searchInfo && item.searchInfo.textSnippet) ||
+    thumbnailLink:
+      (imageLinks && (imageLinks.smallThumbnail || imageLinks.thumbnail)) ||
       null,
+    description:
+      volumeInfo.description || (searchInfo && searchInfo.textSnippet) || null,
 
     category: (volumeInfo.categories || []).join(', '),
     pageCount: volumeInfo.pageCount,

@@ -1,4 +1,10 @@
-import { ID, ActionTypes, ReviewStatus, ReviewRating } from '../interfaces';
+import {
+  ID,
+  ActionTypes,
+  BookData,
+  ReviewStatus,
+  ReviewRating,
+} from '../interfaces';
 
 export type ReviewAction = FetchAll | Create | Update | Remove | RemoveSuccess;
 
@@ -21,16 +27,12 @@ export function fetchAll(payload: FetchAllPayload = {}): FetchAll {
   return { type: ActionTypes.FETCH_REVIEWS, payload };
 }
 
-interface CreatePayload {
-  title: string;
-}
-
 export interface Create {
   type: ActionTypes.CREATE_REVIEW;
-  payload: CreatePayload;
+  payload: BookData;
 }
 
-export function create(payload: CreatePayload): Create {
+export function create(payload: BookData): Create {
   return { type: ActionTypes.CREATE_REVIEW, payload };
 }
 

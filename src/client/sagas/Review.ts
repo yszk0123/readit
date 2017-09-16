@@ -17,14 +17,13 @@ export function* fetch({ payload: { limit } }: actions.Review.FetchAll) {
   }
 }
 
-export function* create({ payload: { title } }: actions.Review.Create) {
+export function* create({ payload: bookData }: actions.Review.Create) {
   try {
     const review = yield call(apis.post, '/api/reviews', {
       status: ReviewStatus.PLAN_TO_BUY,
       rating: 0,
     });
 
-    const bookData = yield call(apis.getBookData, title);
     const book = yield call(apis.post, '/api/books', {
       ...bookData,
       reviewId: review.id,

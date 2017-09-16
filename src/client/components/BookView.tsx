@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+const PLACEHOLDER_URL = 'http://via.placeholder.com/128x128';
+
 const Wrapper = styled.div`
   display: flex;
   padding: 10px;
@@ -42,13 +44,13 @@ const Subtitle = styled.label`
 `;
 
 interface Props {
-  title: string;
-  subtitle: string | null;
-  author: string;
-  thumbnailLink: string;
-  description: string;
-  isbn: string | null;
-  pageCount: number;
+  title?: string | null;
+  subtitle?: string | null;
+  author?: string | null;
+  thumbnailLink?: string | null;
+  description?: string | null;
+  isbn?: string | null;
+  pageCount?: number | null;
 }
 
 export default function BookView({
@@ -63,7 +65,7 @@ export default function BookView({
   return (
     <Wrapper>
       <Cover>
-        <img alt="thumbnail" src={thumbnailLink} />
+        <img alt="thumbnail" src={thumbnailLink || PLACEHOLDER_URL} />
       </Cover>
       <TextInfo>
         <Label>{title}</Label>
@@ -72,7 +74,7 @@ export default function BookView({
         <Sublabel>
           ISBN: <span>{isbn || '(unknown)'}</span>
         </Sublabel>
-        <Sublabel>{pageCount} pages</Sublabel>
+        {pageCount && <Sublabel>{pageCount} pages</Sublabel>}
         <Description>{description}</Description>
       </TextInfo>
     </Wrapper>

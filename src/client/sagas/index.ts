@@ -1,8 +1,11 @@
-import { fork, takeEvery } from 'redux-saga/effects';
+import { fork, takeEvery, throttle } from 'redux-saga/effects';
 import { ActionTypes } from '../interfaces';
 import * as Review from './Review';
 import * as ReadingLog from './ReadingLog';
 import onLoad from './onLoad';
+import searchByTitle from './searchByTitle';
+
+const SEARCH_THROTTLE = 800;
 
 export default function* root() {
   try {
@@ -14,6 +17,12 @@ export default function* root() {
     yield takeEvery(ActionTypes.CREATE_REVIEW, Review.create);
     yield takeEvery(ActionTypes.UPDATE_REVIEW, Review.update);
     yield takeEvery(ActionTypes.REMOVE_REVIEW, Review.remove);
+
+    yield throttle(
+      SEARCH_THROTTLE,
+      ActionTypes.SEARCH_BOOK_BY_TITLE,
+      searchByTitle,
+    );
 
     yield fork(onLoad);
   } catch (error) {

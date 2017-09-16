@@ -14,6 +14,8 @@ export enum ReviewStatus {
 
 export type ReviewRating = 0 | 1 | 2 | 3 | 4 | 5;
 
+export type BookData = Partial<Book>;
+
 // Entity
 
 export interface User {
@@ -71,8 +73,12 @@ export enum ActionTypes {
   REMOVE_REVIEW = 'REMOVE_REVIEW',
   REMOVE_REVIEW_SUCCESS = 'REMOVE_REVIEW_SUCCESS',
 
-  NOOP = 'NOOP',
   SEARCH_BOOK_BY_TITLE = 'SEARCH_BOOK_BY_TITLE',
+  SEARCH_BOOK_BY_TITLE_SUCCESS = 'SEARCH_BOOK_BY_TITLE_SUCCESS',
+  SEARCH_BOOK_BY_TITLE_FAILURE = 'SEARCH_BOOK_BY_TITLE_FAILURE',
+  CLEAR_SEARCH = 'CLEAR_SEARCH',
+
+  NOOP = 'NOOP',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
   FETCH_FAILURE = 'FETCH_FAILURE',
   REMOVE_ENTITY = 'REMOVE_ENTITY',
@@ -92,6 +98,8 @@ export interface State {
     readingLogs: ID[];
     books: ID[];
     reviews: ID[];
+    searching: boolean;
     titleInput: string;
+    candidates: BookData[];
   };
 }
